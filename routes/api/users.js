@@ -1,5 +1,4 @@
 //think of this as a route file that holds our controllers
-
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/User')
