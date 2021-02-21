@@ -7,6 +7,8 @@ const bodyParser = require('body-parser') //we can parse the JSON we send to our
 const users = require('./routes/api/users')
 const tweets = require('./routes/api/tweets')
 
+const User = require('./models/User')
+
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log('Connected to MongoDB successfully'))
@@ -15,6 +17,12 @@ mongoose
 mongoose.set('useNewUrlParser', true)
 
 app.get('/', (req, res) => {
+  const user = new User({
+    handle: 'josh',
+    email: 'test@example.com',
+    password: '123456',
+  })
+  user.save()
   res.send('Twitter MERN')
 })
 app.use('/api/users', users)
