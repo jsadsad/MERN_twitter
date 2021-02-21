@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/User')
+const bcrypt = require('bcryptjs')
 
 router.get('/test', (req, res) => res.json({ msg: 'This is the Users Route' }))
 module.exports = router
@@ -18,10 +19,19 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password,
       })
-      newUser
-        .save()
-        .then((user) => res.send(user))
-        .catch((err) => res.send(err))
+      bcrypt.genSalt(10, (err, salt) => {
+        //10 is the number of rounds to generate the salt. salt is the callback function after the 10.
+        //second arg is the salt we get back
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          //first arg is thing we want to hash, second is the salt, third is the invoked if succesful
+          if (err) throw err
+          newUser.password = hash //resetting password
+          newUser
+            .save()
+            .then((user) => res.json(user))
+            .catch((err) => console.log(err))
+        })
+      })
     }
   })
 })
