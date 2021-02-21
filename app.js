@@ -10,8 +10,6 @@ const passport = require('passport')
 const users = require('./routes/api/users')
 const tweets = require('./routes/api/tweets')
 
-const User = require('./models/User')
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 //20-25 tells our that we want it to respond to JSON requests.
@@ -23,6 +21,7 @@ mongoose
   .catch((err) => console.log(err))
 
 app.get('/', (req, res) => res.send('Mongo Express React NodeJS'))
+
 app.use(passport.initialize())
 require('./config/passport')(passport)
 

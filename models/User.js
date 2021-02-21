@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-  //define what it means to be a user
+  // define what it means to be a user
   handle: {
     type: String,
     required: true,
@@ -21,5 +21,4 @@ const UserSchema = new Schema({
   },
 })
 
-const User = mongoose.model('users', UserSchema)
-module.exports = User
+module.exports = User = mongoose.model('users', UserSchema)

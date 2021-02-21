@@ -1,5 +1,4 @@
 //This makes sure sign up information makes sense
-
 const Validator = require('validator')
 const validText = require('./valid-text')
 
