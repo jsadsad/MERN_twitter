@@ -8,7 +8,7 @@ const keys = require('../../config/keys')
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const validateRegisterInput = require('../../validation/register')
-const validLoginInput = require('../../validation/login')
+const validateLoginInput = require('../../validation/login')
 
 router.get('/test', (req, res) => res.json({ msg: 'This is the Users Route' }))
 module.exports = router
@@ -49,6 +49,11 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body)
+
+  if (!isValid) {
+    return res.status(400).json(errors)
+  }
   //this checks if email or password match a user in the db
   const email = req.body.email
   const password = req.body.password
