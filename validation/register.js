@@ -3,7 +3,7 @@
 const Validator = require('validator')
 const validText = require('./valid-text')
 
-module.exports = function validateRegisterInput() {
+module.exports = function validateRegisterInput(data) {
   let errors = {}
 
   data.handle = validText(data.handle) ? data.handle : ''
