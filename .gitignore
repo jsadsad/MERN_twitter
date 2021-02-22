@@ -128,7 +128,9 @@ psd
 thumb
 sketch
 
-config
+config/keys_dev.js
+config/keys.js
+config/passport.js
 frontend/node_modules
 
 # End of https://www.toptal.com/developers/gitignore/api/react,node
